@@ -13,7 +13,9 @@
 
         .img_watch { position: relative; overflow: hidden; margin: 0 auto; }
 
-        .close { position: absolute; top: 10px; right: 10px; }
+        .img_edit .close { position: absolute; top: 10px; right: 10px; border: none; width: 100px; height: 30px; text-align: center; background-color: #e78b0e; color: #e6e6e6; border-radius: 2%; opacity: 0.8; }
+
+        .img_edit .close:hover { opacity: 1; }
 
         .img_watch img { position: absolute; width: 100%; top: 0; left: 0; }
 
@@ -41,9 +43,7 @@
 
         .img_watch .img_clip .img_clip_left { left: -4px; top: 50%; margin-top: -4px; }
 
-        .img_clip .img_clip:hover {
-            cursor: move;
-            }
+        .img_clip .img_clip:hover { cursor: move; }
 
         .canvas_css { display: block; }
 
@@ -61,7 +61,7 @@
 
         .content_right .result { position: absolute; z-index: 199; bottom: 20px; left: 200px; background-color: transparent; font-size: 14px; font-weight: normal; }
 
-        .content_right .result a:hover { outline: 1px solid deepskyblue; }
+        .content_right .result a:hover { outline: 1px solid deepskyblue; box-shadow: 0 0 0 1px deepskyblue;}
 
         .content_center { position: absolute; left: 575px; top: 400px; width: 60px; height: 30px; color: rgba(231, 139, 14, 0.57); font-size: 20px; text-align: center; line-height: 30px; font-family: "微软雅黑"; }
 
@@ -79,11 +79,11 @@
         </div>
         <div class="want">
             <p>请输入人物描述</p>
-            <label for="want1"></label><input type="text" id="want1" value="我要">
-            <label for="want2"></label><input type="text" id="want2" value="我要">
-            <label for="want3"></label><input type="text" id="want3" value="我要">
-            <label for="want4"></label><input type="text" id="want4" value="我要">
-            <label for="want5"></label><input type="text" id="want5" value="我是">
+            <label for="want1"></label><input type="text" id="want1" value="我要" maxlength="15">
+            <label for="want2"></label><input type="text" id="want2" value="我要" maxlength="15">
+            <label for="want3"></label><input type="text" id="want3" value="我要" maxlength="15">
+            <label for="want4"></label><input type="text" id="want4" value="我要" maxlength="15">
+            <label for="want5"></label><input type="text" id="want5" value="我是" maxlength="15">
         </div>
     </div>
 
@@ -468,8 +468,7 @@
             "background-color": "#e6e6e6",
             "color": "#f28000",
             "text-decoration": "none",
-            "line-height": "30px",
-            "box-shadow": "0 0 3px 3px rgba(0 ,0,0,0.3)",
+            "line-height": "30px"
         });
 
     }
