@@ -61,7 +61,7 @@
 
         .content_right .result { position: absolute; z-index: 199; bottom: 20px; left: 200px; background-color: transparent; font-size: 14px; font-weight: normal; }
 
-        .content_right .result a:hover { outline: 1px solid deepskyblue; box-shadow: 0 0 0 1px deepskyblue;}
+        .content_right .result a:hover { outline: 1px solid deepskyblue; box-shadow: 0 0 0 1px deepskyblue; }
 
         .content_center { position: absolute; left: 575px; top: 400px; width: 60px; height: 30px; color: rgba(231, 139, 14, 0.57); font-size: 20px; text-align: center; line-height: 30px; font-family: "微软雅黑"; }
 
@@ -485,10 +485,11 @@
     //读取图像处理
     function readImg() {
         var imgFile = document.getElementById('imgFile').files[0];
-//        if (!/image\/w+/.test(imgFile.type)) {
-//            alert("请选择文件类型为图像");
-//            return false;
-//        }
+        console.log(imgFile.type);
+        if (!/image\/w*/i.test(imgFile.type)) {
+            alert("请选择文件类型为图像");
+            return false;
+        }
         var reader = new FileReader();
         var img = new Image();
         var img_width, img_height, css_width = 900;
