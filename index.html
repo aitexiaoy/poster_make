@@ -19,27 +19,31 @@
 
         .img_watch .img_clip { box-sizing: border-box; position: absolute; border: 1px dotted red; background-color: transparent; top: 100px; left: 100px; }
 
-        .img_watch .img_clip div { background-color: #ff8e00; width: 8px; height: 8px; position: absolute; margin: 0; padding: 0; }
+        .img_watch .img_clip div { background-color: red; width: 8px; height: 8px; position: absolute; margin: 0; padding: 0; }
 
         #img1 { position: absolute; top: 0px; left: 0px; opacity: 0.5; }
 
         #img2 { position: absolute; top: 0px; left: 0px; }
 
-        .img_watch .img_clip .img_clip_leftUp { left: -4px; top: -4px; cursor: nw-resize; }
+        .img_watch .img_clip .img_clip_leftUp { left: -4px; top: -4px; }
 
-        .img_watch .img_clip .img_clip_up { left: 50%; margin-left: -4px; top: -4px; cursor: n-resize; }
+        .img_watch .img_clip .img_clip_up { left: 50%; margin-left: -4px; top: -4px; }
 
-        .img_watch .img_clip .img_clip_rightUp { right: -4px; top: -4px; cursor: sw-resize; }
+        .img_watch .img_clip .img_clip_rightUp { right: -4px; top: -4px; }
 
-        .img_watch .img_clip .img_clip_right { right: -4px; top: calc(50% - 4px); cursor: w-resize; }
+        .img_watch .img_clip .img_clip_right { right: -4px; top: calc(50% - 4px); cursor: w-resize; background-color: #21ff20; }
 
-        .img_watch .img_clip .img_clip_rightDown { right: -4px; bottom: -4px; cursor: se-resize; }
+        .img_watch .img_clip .img_clip_rightDown { right: -4px; bottom: -4px; cursor: se-resize; background-color: #21ff20; }
 
-        .img_watch .img_clip .img_clip_down { left: calc(50% - 4px); bottom: -4px; cursor: n-resize; }
+        .img_watch .img_clip .img_clip_down { left: calc(50% - 4px); bottom: -4px; cursor: n-resize; background-color: #21ff20; }
 
-        .img_watch .img_clip .img_clip_leftDown { left: -4px; bottom: -4px; cursor: sw-resize; }
+        .img_watch .img_clip .img_clip_leftDown { left: -4px; bottom: -4px; }
 
-        .img_watch .img_clip .img_clip_left { left: -4px; top: 50%; margin-top: -4px; cursor: e-resize; }
+        .img_watch .img_clip .img_clip_left { left: -4px; top: 50%; margin-top: -4px; }
+
+        .img_clip .img_clip:hover {
+            cursor: move;
+            }
 
         .canvas_css { display: block; }
 
@@ -63,7 +67,7 @@
 
         .content_center button { color: #E7BD7F; font-size: 20px; text-align: center; line-height: 30px; background-color: rgba(231, 221, 196, 0.57); border: none; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
 
-        .content_center button:hover { box-shadow: 0 0  2px deepskyblue }
+        .content_center button:hover { box-shadow: 0 0 2px deepskyblue }
     </style>
 </head>
 <body>
@@ -197,27 +201,27 @@
                 case "right" :
                     rightMove(e);
                     break;
-                case "left" :
-                    leftMove(e);
-                    break;
-                case "up" :
-                    upMove(e);
-                    break;
+//                case "left" :
+//                    leftMove(e);
+//                    break;
+//                case "up" :
+//                    upMove(e);
+//                    break;
                 case "down":
                     downMove(e);
                     break;
-                case "left_up":
-                    leftMove(e);
-                    upMove(e);
-                    break;
-                case  "left_down":
-                    leftMove(e);
-                    downMove(e);
-                    break;
-                case "right_up":
-                    rightMove(e);
-                    upMove(e);
-                    break;
+//                case "left_up":
+//                    leftMove(e);
+//                    upMove(e);
+//                    break;
+//                case  "left_down":
+//                    leftMove(e);
+//                    downMove(e);
+//                    break;
+//                case "right_up":
+//                    rightMove(e);
+//                    upMove(e);
+//                    break;
                 case  "right_down":
                     rightMove(e);
                     downMove(e);
@@ -238,8 +242,16 @@
         //获得框的宽度
         var widthBefore = $main.innerWidth();
         var addWidth = x - $main.offset().left - widthBefore;
+        var new_width = addWidth + widthBefore;
+        var new_height = new_width * 1.666666667;
+
+        if (new_height > $img_watch.innerHeight() - $main.position().top) {
+            new_height = $img_watch.innerHeight() - $main.position().top;
+            new_width = new_height / 1.66666667;
+        }
         $main.css({
-            "width": addWidth + widthBefore + 'px'
+            "width": new_width + 'px',
+            "height": new_height + 'px'
         });
 
 //        console.log('left:' + $('#img_watch').offset().left);
@@ -257,9 +269,18 @@
         var widthBefore = $main.innerWidth();
         var mainOffsetLeft = $main.offset().left;
         var addWidth = mainOffsetLeft - x;
+        var new_width = addWidth + widthBefore;
+        var new_height = new_width * 1.666666667;
+        var new_left = mainOffsetLeft - addWidth;
+
+        if (new_height > $img_watch.innerHeight() - $main.position().top) {
+            new_height = $img_watch.innerHeight() - $main.position().top;
+            new_width = new_height / 1.66666667;
+        }
         $main.css({
-            "width": widthBefore + addWidth + 'px',
-            "left": mainOffsetLeft - addWidth + 'px'
+            "width": new_width + 'px',
+            "height": new_height + 'px',
+            "left": new_left + 'px'
         });
         console.log('x:' + x);
         console.log('addWidth:' + addWidth);
@@ -275,8 +296,11 @@
         }
         var heightBefore = $main.innerHeight();
         var addHeight = y - $main.offset().top - heightBefore;
+        var new_height = heightBefore + addHeight;
+        var new_width = new_height / 1.66666667;
         $main.css({
-            "height": heightBefore + addHeight + 'px'
+            "width": new_width + 'px',
+            "height": new_height + 'px'
         });
 //        console.log(y);
 //        console.log($main.offset().top);
@@ -296,9 +320,13 @@
         var heightBefore = $main.innerHeight();
         var mainOffsetTop = $main.offset().top;
         var addHeight = mainOffsetTop - y;
+        var new_height = heightBefore + addHeight;
+        var new_width = new_height / 1.66666667;
+        var new_top = mainOffsetTop - addHeight;
         $main.css({
-            "height": heightBefore + addHeight + 'px',
-            "top": mainOffsetTop - addHeight + 'px'
+            "width": new_width + 'px',
+            "height": new_height + 'px',
+            "top": new_top + 'px'
         });
     }
 
